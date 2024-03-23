@@ -1,15 +1,10 @@
 package com.lubricante.rukanas.model.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "pedidos")
@@ -36,6 +31,9 @@ public class Pedido {
 
     @Column(name = "total_pedido")
     private Float totalPedido;
+
+    @OneToMany(mappedBy = "pedido")
+    private List<Detalle> detalles;
 
     // Getters y Setters
 
@@ -83,6 +81,14 @@ public class Pedido {
 
     public void setTotalPedido(float totalPedido) {
         this.totalPedido = totalPedido;
+    }
+
+    public List<Detalle> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<Detalle> detalles) {
+        this.detalles = detalles;
     }
 }
 

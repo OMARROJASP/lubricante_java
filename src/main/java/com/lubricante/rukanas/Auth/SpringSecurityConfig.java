@@ -44,6 +44,8 @@ public class SpringSecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/usuarios").permitAll()
                 .requestMatchers(HttpMethod.GET,"/categorias/**").permitAll()
                 .requestMatchers(HttpMethod.GET,"/pedidos").permitAll()
+                .requestMatchers(HttpMethod.GET,"/detalles/**").permitAll()
+                .requestMatchers(HttpMethod.POST,"/detalles").permitAll()
                 .requestMatchers(HttpMethod.POST,"/pedidos").permitAll()
                 .requestMatchers(HttpMethod.GET,"/productos/**").permitAll() // Permitir acceso sin restricciones a rutas que siguen después de "/categorias"
                 .anyRequest().authenticated()

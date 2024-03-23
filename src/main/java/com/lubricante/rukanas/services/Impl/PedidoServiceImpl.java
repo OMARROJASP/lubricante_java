@@ -50,7 +50,7 @@ public class PedidoServiceImpl implements PedidoService {
         if (optionalPedido.isPresent()) {
             Pedido pedidoDB = optionalPedido.orElseThrow();
             pedidoDB.setUsuario(pedido.getUsuario());
-            pedidoDB.setEstado(pedidoDB.getEstado());
+            pedidoDB.setEstado(pedido.getEstado());
             pedidoDB.setTotalPedido(pedido.getTotalPedido());
             pedidoAux = pedidoRepository.save(pedidoDB);
         }

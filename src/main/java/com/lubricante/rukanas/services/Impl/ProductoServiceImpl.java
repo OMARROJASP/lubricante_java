@@ -24,9 +24,6 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Autowired
     private ProductoRespository productoRespository;
-
-
-
     @Override
     public List<ProductoDto> findAllProducts() {
        List<Producto> producto = (List<Producto>) productoRespository.findAll();
