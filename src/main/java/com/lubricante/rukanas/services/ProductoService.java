@@ -26,4 +26,6 @@ public interface ProductoService {
 
     void EliminarProducto(Long id);
 
+    List<Producto> allProductByDescuento();
+
 }

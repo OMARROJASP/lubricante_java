@@ -11,7 +11,7 @@ import java.util.Date;
 public class PedidoDto {
     private Long id;
 
-    private Usuario usuario;
+    private UsuarioDto usuario;
 
     private Integer estado;
     private LocalDateTime  fechaPedido;
@@ -21,13 +21,17 @@ public class PedidoDto {
     public PedidoDto() {
     }
 
-    public PedidoDto(Long id, Usuario usuario, Integer estado,LocalDateTime  fechaPedido, Float totalPedido) {
+    public PedidoDto(Long id, UsuarioDto usuario, Integer estado,LocalDateTime  fechaPedido, Float totalPedido) {
         this.id = id;
         this.usuario = usuario;
         this.estado = estado;
         this.fechaPedido= fechaPedido;
         this.totalPedido = totalPedido;
     }
+
+    public PedidoDto(Long id, Usuario usuario, Integer estado, LocalDateTime fechaPedido, Float totalPedido) {
+    }
+
 
     public Long getId() {
         return id;
@@ -37,11 +41,11 @@ public class PedidoDto {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
+    public UsuarioDto getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(UsuarioDto usuario) {
         this.usuario = usuario;
     }
 

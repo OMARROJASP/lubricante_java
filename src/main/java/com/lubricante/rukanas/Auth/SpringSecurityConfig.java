@@ -42,6 +42,7 @@ public class SpringSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/usuarios").permitAll()
+                .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
                 .requestMatchers(HttpMethod.GET,"/categorias/**").permitAll()
                 .requestMatchers(HttpMethod.GET,"/pedidos").permitAll()
                 .requestMatchers(HttpMethod.POST,"/pedidos").permitAll()
@@ -60,7 +61,7 @@ public class SpringSecurityConfig {
 
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
-        config.setAllowedOriginPatterns(Arrays.asList("*"));
+        //config.setAllowedOriginPatterns(Arrays.asList("*"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         config.setAllowCredentials(true);

@@ -83,5 +83,11 @@ public class ProductoServiceImpl implements ProductoService {
         productoRespository.deleteById(id);
     }
 
+    @Override
+    public List<Producto> allProductByDescuento() {
+
+        return productoRespository.findProductoByDescuento();
+    }
+
 
 }

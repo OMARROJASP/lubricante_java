@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "pedidos")
@@ -38,6 +39,12 @@ public class Pedido {
     private Float totalPedido;
 
     // Getters y Setters
+
+
+
+    @OneToMany(mappedBy = "pedido")
+    private List<Detalles> detalles;
+
 
 
 
@@ -83,6 +90,14 @@ public class Pedido {
 
     public void setTotalPedido(float totalPedido) {
         this.totalPedido = totalPedido;
+    }
+
+    public List<Detalles> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<Detalles> detalles) {
+        this.detalles = detalles;
     }
 }
 
