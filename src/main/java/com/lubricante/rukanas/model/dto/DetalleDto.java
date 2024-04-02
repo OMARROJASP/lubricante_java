@@ -8,14 +8,14 @@ import com.lubricante.rukanas.model.entities.Producto;
 public class DetalleDto {
 
     private Long id;
-    private Pedido pedido;
-    private Producto producto;
+    private Long pedido;
+    private Long producto;
     private Long cantidad;
     private Float precioUnitario;
     private Float subTotal;
 
 
-    public DetalleDto(Long id, Pedido pedido, Producto producto, Long cantidad, Float precioUnitario, Float subTotal) {
+    public DetalleDto(Long id, Long pedido, Long producto, Long cantidad, Float precioUnitario, Float subTotal) {
         this.id = id;
         this.pedido = pedido;
         this.producto = producto;
@@ -36,19 +36,19 @@ public class DetalleDto {
         this.id = id;
     }
 
-    public Pedido getPedido() {
+    public Long getPedido() {
         return pedido;
     }
 
-    public void setPedido(Pedido pedido) {
+    public void setPedido(Long pedido) {
         this.pedido = pedido;
     }
 
-    public Producto getProducto() {
+    public Long getProducto() {
         return producto;
     }
 
-    public void setProducto(Producto producto) {
+    public void setProducto(Long producto) {
         this.producto = producto;
     }
 

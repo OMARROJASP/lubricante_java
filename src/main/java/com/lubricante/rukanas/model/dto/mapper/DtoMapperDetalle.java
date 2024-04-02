@@ -22,14 +22,15 @@ public class DtoMapperDetalle {
         if(detalle == null ){
             throw new RuntimeException("DEBE PASAR EL ENTITY DETALLES");
         }
+        Long pedidoId = detalle.getPedido() != null ? detalle.getPedido().getId() : null;
+        Long productoId = detalle.getProducto() != null ? detalle.getProducto().getId() : null;
         return new DetalleDto(this.
                 detalle.getId(),
-                detalle.getPedido(),
-                detalle.getProducto(),
+                pedidoId,
+                productoId,
                 detalle.getCantidad(),
                 detalle.getPrecioUnitario(),
                 detalle.getSubTotal()
         );
     }
-
 }

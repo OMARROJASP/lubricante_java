@@ -50,7 +50,7 @@ public class DetalleController {
         return ResponseEntity.status(HttpStatus.CREATED).body(detalleService.saveDetalles(detalles));
     }
 
-    @PutMapping("update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> actualizarDetalles(@Valid @RequestBody DetalleRequest detalles, BindingResult result, @PathVariable("id") Long id){
         if (result.hasErrors()){
             return validation(result);
@@ -80,5 +80,4 @@ public class DetalleController {
         });
         return ResponseEntity.badRequest().body(errors);
     }
-
 }

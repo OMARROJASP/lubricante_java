@@ -32,7 +32,7 @@ public class DtoMapperProducto {
                 producto.getPrecio(),
                 producto.getDescuento(),
                 producto.getImagen(),
-                producto.getCategoria()
+                producto.getCategoria().getId()
                 );
     }
 

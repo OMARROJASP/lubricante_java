@@ -1,9 +1,10 @@
 package com.lubricante.rukanas.controllers;
 
 import com.lubricante.rukanas.model.dto.PedidoDto;
-import com.lubricante.rukanas.model.dto.ProductoDto;
 import com.lubricante.rukanas.model.entities.Pedido;
+import com.lubricante.rukanas.model.entities.Usuario;
 import com.lubricante.rukanas.model.request.PedidoRequest;
+import com.lubricante.rukanas.repositories.UsuarioRepository;
 import com.lubricante.rukanas.services.PedidoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,23 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     @GetMapping
    public List<PedidoDto> obtenerPedidos(){
         return pedidoService.findAllPedidos();
+    }
+
+    @GetMapping("/lista_usuario/{id}")
+    public List<PedidoDto> obtenerPedidosByUsuario(@PathVariable Long id){
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        Usuario user = null;
+        if(usuario.isPresent()){
+            user = usuario.orElseThrow();
+        }
+
+        return pedidoService.findAllPedidoByUsuario(user);
     }
 
     @GetMapping("/{id}")

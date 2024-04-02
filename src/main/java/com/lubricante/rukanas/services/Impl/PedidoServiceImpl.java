@@ -4,8 +4,10 @@ import com.lubricante.rukanas.model.dto.PedidoDto;
 import com.lubricante.rukanas.model.dto.mapper.DtoMapperPedido;
 import com.lubricante.rukanas.model.dto.mapper.DtoMapperProducto;
 import com.lubricante.rukanas.model.entities.Pedido;
+import com.lubricante.rukanas.model.entities.Usuario;
 import com.lubricante.rukanas.model.request.PedidoRequest;
 import com.lubricante.rukanas.repositories.PedidoRepository;
+import com.lubricante.rukanas.repositories.UsuarioRepository;
 import com.lubricante.rukanas.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class PedidoServiceImpl implements PedidoService {
     @Autowired
     private PedidoRepository pedidoRepository;
 
+
     @Override
     public List<PedidoDto> findAllPedidos() {
     List<Pedido> pedido = (List<Pedido>) pedidoRepository.findAll();
@@ -34,6 +37,15 @@ public class PedidoServiceImpl implements PedidoService {
     public Optional<PedidoDto> findByPedido(Long id) {
         return pedidoRepository.findById(id)
                 .map(u->DtoMapperPedido.builder().setPedido(u).build());
+    }
+    @Override
+    public List<PedidoDto> findAllPedidoByUsuario(Usuario usuario) {
+
+        List<Pedido> pedido = (List<Pedido>) pedidoRepository.findPedidoByUsuario(usuario);
+        return pedido
+                .stream()
+                .map(n-> DtoMapperPedido.builder().setPedido(n).build())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -61,4 +73,6 @@ public class PedidoServiceImpl implements PedidoService {
     public void deletePedido(Long id) {
         pedidoRepository.deleteById(id);
     }
+
+
 }

@@ -18,12 +18,12 @@ public class ProductoDto {
 
     private String imagen;
 
-    private Categoria categoria;
+    private Long categoria;
 
     public ProductoDto() {
     }
 
-    public ProductoDto(Long id, String nombre, String marca,Long cantidad, Float precio, int descuento, String imagen, Categoria categoria) {
+    public ProductoDto(Long id, String nombre, String marca,Long cantidad, Float precio, int descuento, String imagen, Long categoria) {
         this.id = id;
         this.nombre = nombre;
         this.marca = marca;
@@ -90,11 +90,11 @@ public class ProductoDto {
         this.imagen = imagen;
     }
 
-    public Categoria getCategoria() {
+    public Long getCategoria() {
         return categoria;
     }
 
-    public void setCategoriaDto(Categoria categoria) {
+    public void setCategoriaDto(Long categoria) {
         this.categoria = categoria;
     }
 }

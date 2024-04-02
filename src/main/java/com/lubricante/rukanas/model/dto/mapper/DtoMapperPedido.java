@@ -23,7 +23,7 @@ public class DtoMapperPedido {
         }
         return new PedidoDto(this.
                 pedido.getId(),
-                pedido.getUsuario(),
+                pedido.getUsuario().getId(),
                 pedido.getEstado(),
                 pedido.getFechaPedido(),
                 pedido.getTotalPedido()
