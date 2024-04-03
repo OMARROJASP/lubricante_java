@@ -1,35 +1,27 @@
-package com.lubricante.rukanas.model.entities;
+package com.lubricante.rukanas.model.dto;
 
+import com.lubricante.rukanas.model.entities.Pedido;
+import com.lubricante.rukanas.model.entities.Usuario;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-@Table(name = "ventas")
-public class Venta {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class VentaDto {
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-
-    @OneToMany(mappedBy = "venta")
-    private List<Pedido> pedido;
-
-    @Column(name = "fecha_pedido")
+    private Long usuario;
     private LocalDateTime fechaPedido;
-
-    @PrePersist
-    private void onCreate(){
-        fechaPedido = LocalDateTime.now();
-    }
-    @Column(name = "monto_venta")
     private Float montoVenta;
-    @Column(name = "motodo_venta")
     private String MetodoVenta;
+    public VentaDto(){}
+    public VentaDto(Long id, Long usuario, LocalDateTime fechaPedido, Float montoVenta, String metodoVenta) {
+        this.id = id;
+        this.usuario = usuario;
+        this.fechaPedido = fechaPedido;
+        this.montoVenta = montoVenta;
+        MetodoVenta = metodoVenta;
+    }
 
     public Long getId() {
         return id;
@@ -39,20 +31,12 @@ public class Venta {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
+    public Long getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Long usuario) {
         this.usuario = usuario;
-    }
-
-    public List<Pedido> getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(List<Pedido> pedido) {
-        this.pedido = pedido;
     }
 
     public LocalDateTime getFechaPedido() {
