@@ -22,9 +22,10 @@ public class DtoMapperVenta {
         if(venta == null){
             throw new RuntimeException("DEBE PASAR EL ENTITY VENTA");
         }
+        Long usuarioId = venta.getUsuario() != null ? venta.getUsuario().getId() : null;
         return new VentaDto(this.
                 venta.getId(),
-                venta.getUsuario().getId(),
+                usuarioId,
                 venta.getFechaPedido(),
                 venta.getMontoVenta(),
                 venta.getMetodoVenta()
