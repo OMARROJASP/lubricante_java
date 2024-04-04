@@ -24,6 +24,10 @@ public class Pedido {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    @ManyToOne
+    @JoinColumn(name = "venta_id")
+    private Venta venta;
+
     private Integer estado;
 
 
@@ -98,6 +102,14 @@ public class Pedido {
 
     public void setDetalles(List<Detalles> detalles) {
         this.detalles = detalles;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 }
 

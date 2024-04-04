@@ -1,12 +1,14 @@
 package com.lubricante.rukanas.model.entities;
 
 import jakarta.persistence.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "ventas")
+@EntityListeners(AuditingEntityListener.class)
 public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +30,8 @@ public class Venta {
     }
     @Column(name = "monto_venta")
     private Float montoVenta;
-    @Column(name = "motodo_venta")
-    private String MetodoVenta;
+    @Column(name = "metodo_venta")
+    private String metodoVenta;
 
     public Long getId() {
         return id;
@@ -72,10 +74,10 @@ public class Venta {
     }
 
     public String getMetodoVenta() {
-        return MetodoVenta;
+        return metodoVenta;
     }
 
     public void setMetodoVenta(String metodoVenta) {
-        MetodoVenta = metodoVenta;
+        this.metodoVenta = metodoVenta;
     }
 }

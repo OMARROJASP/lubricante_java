@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface VentaService {
 
-    List<Venta> findAllVentas();
+    List<VentaDto> findAllVentas();
 
     Optional<VentaDto> findIdVenta(Long id);
 

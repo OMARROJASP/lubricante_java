@@ -49,6 +49,15 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
+    public List<PedidoDto> findAllPedidoByUsuarioAndEstado(Usuario usuario, Long estado) {
+        List<Pedido> pedido = (List<Pedido>) pedidoRepository.findPedidoByUsuarioAndAndEstado(usuario,estado);
+        return pedido
+                .stream()
+                .map(n-> DtoMapperPedido.builder().setPedido(n).build())
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public PedidoDto savePedido(Pedido pedido) {
         return DtoMapperPedido.builder().setPedido(pedidoRepository.save(pedido)).build();
     }

@@ -17,4 +17,5 @@ public interface PedidoService {
     void deletePedido(Long id);
 
     List<PedidoDto> findAllPedidoByUsuario(Usuario usuario);
+    List<PedidoDto> findAllPedidoByUsuarioAndEstado(Usuario usuario, Long estado);
 }

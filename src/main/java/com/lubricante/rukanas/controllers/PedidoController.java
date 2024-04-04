@@ -6,6 +6,7 @@ import com.lubricante.rukanas.model.entities.Usuario;
 import com.lubricante.rukanas.model.request.PedidoRequest;
 import com.lubricante.rukanas.repositories.UsuarioRepository;
 import com.lubricante.rukanas.services.PedidoService;
+import com.lubricante.rukanas.services.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,9 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
     @GetMapping
@@ -44,6 +48,15 @@ public class PedidoController {
         return pedidoService.findAllPedidoByUsuario(user);
     }
 
+    @GetMapping("/estado/{nombre}")
+    public List<PedidoDto> obtenerPedidosByUsuarioAndEstado(@PathVariable String nombre){
+        Optional<Usuario> usuario = usuarioRepository.findByNombre(nombre);
+        Usuario user = null;
+        if(usuario.isPresent()){
+            user = usuario.orElseThrow();
+        }
+        return pedidoService.findAllPedidoByUsuarioAndEstado(user,user.getId());
+    }
     @GetMapping("/{id}")
     public ResponseEntity<?> getPedidoById(@PathVariable Long id) {
         Optional<PedidoDto> pedidoDtoOptional = pedidoService.findByPedido(id);

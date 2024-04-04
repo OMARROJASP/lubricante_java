@@ -13,14 +13,15 @@ public class VentaDto {
     private Long usuario;
     private LocalDateTime fechaPedido;
     private Float montoVenta;
-    private String MetodoVenta;
+    private String metodoVenta;
+
     public VentaDto(){}
     public VentaDto(Long id, Long usuario, LocalDateTime fechaPedido, Float montoVenta, String metodoVenta) {
         this.id = id;
         this.usuario = usuario;
         this.fechaPedido = fechaPedido;
         this.montoVenta = montoVenta;
-        MetodoVenta = metodoVenta;
+        this.metodoVenta = metodoVenta;
     }
 
     public Long getId() {
@@ -56,10 +57,10 @@ public class VentaDto {
     }
 
     public String getMetodoVenta() {
-        return MetodoVenta;
+        return metodoVenta;
     }
 
     public void setMetodoVenta(String metodoVenta) {
-        MetodoVenta = metodoVenta;
+        metodoVenta = metodoVenta;
     }
 }

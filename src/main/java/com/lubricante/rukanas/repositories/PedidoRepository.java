@@ -9,4 +9,6 @@ import java.util.List;
 public interface PedidoRepository extends CrudRepository<Pedido, Long> {
 
        List<Pedido> findPedidoByUsuario(Usuario usuario);
+
+       List<Pedido> findPedidoByUsuarioAndAndEstado(Usuario usuario, Long estado);
 }
