@@ -67,7 +67,7 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createPedido(@Valid @RequestBody Pedido pedido,
+    public ResponseEntity<?> createPedido(@Valid @RequestBody PedidoDto pedido,
                                           BindingResult result
     ) {
         if (result.hasErrors()) {

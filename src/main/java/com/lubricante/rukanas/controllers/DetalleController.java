@@ -42,8 +42,13 @@ public class DetalleController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/ventas/{nombre}")
+    private List<DetalleDto> obtenerDetallePorEstado(@PathVariable ("nombre") String nombre) {
+            return detalleService.findAllDetallesByVenta(nombre);
+    }
+
     @PostMapping("/save")
-    public ResponseEntity<?> guardarDetalles(@Valid @RequestBody Detalles detalles, BindingResult result){
+    public ResponseEntity<?> guardarDetalles(@Valid @RequestBody DetalleDto detalles, BindingResult result){
         if(result.hasErrors()){
             return validation(result);
         }
@@ -63,15 +68,14 @@ public class DetalleController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteDetalles(@PathVariable("id") Long id){
+    public ResponseEntity<?> deleteDetalles(@PathVariable("id") Long id) {
         Optional<DetalleDto> o = detalleService.findByIdDetalle(id);
-        if(o.isPresent()){
+        if (o.isPresent()) {
             detalleService.deleteDetalles(id);
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok().build(); // Cambio aquí
         }
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.notFound().build();
     }
-
     private ResponseEntity<?> validation(BindingResult result) {
         Map<String, String> errors = new HashMap<>();
 

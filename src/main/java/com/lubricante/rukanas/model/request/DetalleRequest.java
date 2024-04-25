@@ -9,8 +9,8 @@ public class DetalleRequest {
 
 
     private Long id;
-    private Pedido pedido;
-    private Producto producto;
+    private Long pedido;
+    private Long producto;
     private Long cantidad;
     private Float precioUnitario;
     private Float subTotal;
@@ -23,19 +23,19 @@ public class DetalleRequest {
         this.id = id;
     }
 
-    public Pedido getPedido() {
+    public Long getPedido() {
         return pedido;
     }
 
-    public void setPedido(Pedido pedido) {
+    public void setPedido(Long pedido) {
         this.pedido = pedido;
     }
 
-    public Producto getProducto() {
+    public Long getProducto() {
         return producto;
     }
 
-    public void setProducto(Producto producto) {
+    public void setProducto(Long producto) {
         this.producto = producto;
     }
 

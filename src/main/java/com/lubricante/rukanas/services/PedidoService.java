@@ -12,7 +12,7 @@ public interface PedidoService {
 
     List<PedidoDto> findAllPedidos();
     Optional<PedidoDto> findByPedido(Long id);
-    PedidoDto savePedido(Pedido pedido);
+    PedidoDto savePedido(PedidoDto pedido);
     Optional<PedidoDto> updatePedido(PedidoRequest pedido, Long id);
     void deletePedido(Long id);
 

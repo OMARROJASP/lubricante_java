@@ -11,7 +11,8 @@ public class PedidoRequest {
     private Long id;
     private Integer estado;
     private LocalDateTime  fechaPedido;
-    private Usuario usuario;
+    private Long usuario;
+    private Long venta;
     private Float totalPedido;
 
     public LocalDateTime  getFechaPedido() {
@@ -38,11 +39,11 @@ public class PedidoRequest {
         this.estado = estado;
     }
 
-    public Usuario getUsuario() {
+    public Long getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Long usuario) {
         this.usuario = usuario;
     }
 
@@ -52,5 +53,13 @@ public class PedidoRequest {
 
     public void setTotalPedido(Float totalPedido) {
         this.totalPedido = totalPedido;
+    }
+
+    public Long getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Long venta) {
+        this.venta = venta;
     }
 }

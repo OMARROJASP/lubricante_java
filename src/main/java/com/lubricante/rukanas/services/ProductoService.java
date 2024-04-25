@@ -17,7 +17,7 @@ public interface ProductoService {
 
 
     Optional<ProductoDto> findIdProducto(Long id);
-    ProductoDto saveProduct(Producto producto);
+    ProductoDto saveProduct(ProductoDto producto);
 
     Optional<ProductoDto> updateProducto(ProductoRequest producto, Long id);
 

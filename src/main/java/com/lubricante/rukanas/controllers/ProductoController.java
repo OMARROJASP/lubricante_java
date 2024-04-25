@@ -35,7 +35,7 @@ public class ProductoController {
 
     @PostMapping( "/guardar")
     public ResponseEntity<?> guardarProducto(
-            @Valid @RequestBody Producto producto,
+            @Valid @RequestBody ProductoDto producto,
             BindingResult result
     ) {
         if (result.hasErrors()) {
