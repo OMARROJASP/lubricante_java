@@ -5,6 +5,7 @@ import com.lubricante.rukanas.model.dto.mapper.DtoMapperProducto;
 import com.lubricante.rukanas.model.entities.Categoria;
 import com.lubricante.rukanas.model.entities.Producto;
 import com.lubricante.rukanas.model.request.ProductoRequest;
+import com.lubricante.rukanas.repositories.CategoriaRepository;
 import com.lubricante.rukanas.repositories.ProductoRespository;
 import com.lubricante.rukanas.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class ProductoServiceImpl implements ProductoService {
     @Autowired
     private ProductoRespository productoRespository;
 
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
 
     @Override
@@ -44,12 +47,26 @@ public class ProductoServiceImpl implements ProductoService {
 
 
     @Override
-    public ProductoDto saveProduct(Producto producto) {
-     return DtoMapperProducto.builder().setProducto(productoRespository.save(producto)).build();
+    public ProductoDto saveProduct(ProductoDto producto) {
+       Optional<Categoria> categoriaOptional = categoriaRepository.findById(producto.getCategoria());
+
+        Categoria categoria = categoriaOptional.orElseThrow(() -> new IllegalArgumentException("Categoria no encontrada"));
+
+        Producto productoAux = new Producto();
+         productoAux.setNombre(producto.getNombre());
+         productoAux.setCategoria(categoria);
+         productoAux.setDescuento(producto.getDescuento());
+         productoAux.setImagen(producto.getImagen());
+         productoAux.setMarca(producto.getMarca());
+         productoAux.setPrecio(producto.getPrecio());
+         productoAux.setCantidad(producto.getCantidad());
+
+     return DtoMapperProducto.builder().setProducto(productoRespository.save(productoAux)).build();
     }
 
     @Override
     public Optional<ProductoDto> updateProducto(ProductoRequest producto, Long id) {
+        //Optional<Categoria> categoriaOptional = categoriaRepository.findById(id);
        Optional<Producto> productoOptional = productoRespository.findById(id);
        Producto productoAux = null;
        if(productoOptional.isPresent()){
@@ -81,6 +98,12 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public void EliminarProducto(Long id) {
         productoRespository.deleteById(id);
+    }
+
+    @Override
+    public List<Producto> allProductByDescuento() {
+
+        return productoRespository.findProductoByDescuento();
     }
 
 

@@ -42,10 +42,12 @@ public class SpringSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/usuarios").permitAll()
+                .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
                 .requestMatchers(HttpMethod.GET,"/categorias/**").permitAll()
                 .requestMatchers(HttpMethod.GET,"/pedidos").permitAll()
                 .requestMatchers(HttpMethod.POST,"/pedidos").permitAll()
                 .requestMatchers(HttpMethod.GET,"/productos/**").permitAll() // Permitir acceso sin restricciones a rutas que siguen después de "/categorias"
+                .requestMatchers("/v1/authentificate","/v3/api-docs/**","/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationConfiguration.getAuthenticationManager()))
@@ -60,7 +62,7 @@ public class SpringSecurityConfig {
 
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
-        config.setAllowedOriginPatterns(Arrays.asList("*"));
+        //config.setAllowedOriginPatterns(Arrays.asList("*"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         config.setAllowCredentials(true);

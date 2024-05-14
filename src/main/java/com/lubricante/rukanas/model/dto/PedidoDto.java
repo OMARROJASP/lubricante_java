@@ -1,6 +1,7 @@
 package com.lubricante.rukanas.model.dto;
 
 import com.lubricante.rukanas.model.entities.Usuario;
+import com.lubricante.rukanas.model.entities.Venta;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -11,7 +12,8 @@ import java.util.Date;
 public class PedidoDto {
     private Long id;
 
-    private Usuario usuario;
+    private Long usuario;
+    private Long venta;
 
     private Integer estado;
     private LocalDateTime  fechaPedido;
@@ -21,12 +23,22 @@ public class PedidoDto {
     public PedidoDto() {
     }
 
-    public PedidoDto(Long id, Usuario usuario, Integer estado,LocalDateTime  fechaPedido, Float totalPedido) {
+    public PedidoDto(Long id, Long usuario,Long venta, Integer estado,LocalDateTime  fechaPedido, Float totalPedido) {
         this.id = id;
         this.usuario = usuario;
+        this.venta=venta;
         this.estado = estado;
         this.fechaPedido= fechaPedido;
         this.totalPedido = totalPedido;
+
+    }
+
+    public Long getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Long venta) {
+        this.venta = venta;
     }
 
     public Long getId() {
@@ -37,11 +49,11 @@ public class PedidoDto {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
+    public Long getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Long usuario) {
         this.usuario = usuario;
     }
 

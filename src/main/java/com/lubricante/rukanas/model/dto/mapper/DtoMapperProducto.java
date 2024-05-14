@@ -24,6 +24,7 @@ public class DtoMapperProducto {
         if(producto == null){
             throw new RuntimeException("DEBE PASAR EL ENTITY PRODUCTO");
         }
+        Long categoriaId = producto.getCategoria() != null ? producto.getCategoria().getId() : null;
         return new ProductoDto(this.
                 producto.getId(),
                 producto.getNombre(),
@@ -32,7 +33,7 @@ public class DtoMapperProducto {
                 producto.getPrecio(),
                 producto.getDescuento(),
                 producto.getImagen(),
-                producto.getCategoria()
+                categoriaId
                 );
     }
 

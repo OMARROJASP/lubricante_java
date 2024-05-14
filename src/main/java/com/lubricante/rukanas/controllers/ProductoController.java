@@ -35,7 +35,7 @@ public class ProductoController {
 
     @PostMapping( "/guardar")
     public ResponseEntity<?> guardarProducto(
-            @Valid @RequestBody Producto producto,
+            @Valid @RequestBody ProductoDto producto,
             BindingResult result
     ) {
         if (result.hasErrors()) {
@@ -43,9 +43,7 @@ public class ProductoController {
         }
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(productoService.saveProduct(producto));
-
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<?> obtenerProducto(@PathVariable("id") Long id){
@@ -55,8 +53,6 @@ public class ProductoController {
         }
         return ResponseEntity.notFound().build();
     }
-
-
 
     @GetMapping("/lista/{id}")
     public List<Producto> listaProductosByCategoria(@PathVariable Long id){
@@ -74,6 +70,11 @@ public class ProductoController {
             return Collections.emptyList();
         }
 
+    }
+
+    @GetMapping("/descuento")
+    public List<Producto> listaProductoPorDescuento(){
+        return productoService.allProductByDescuento();
     }
 
     @PutMapping("actualizar/{id}")
@@ -98,8 +99,6 @@ public class ProductoController {
         }
         return ResponseEntity.noContent().build();
     }
-
-
 
     private ResponseEntity<?> validation(BindingResult result) {
         Map<String, String> errors = new HashMap<>();

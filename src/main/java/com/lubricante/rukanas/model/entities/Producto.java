@@ -2,6 +2,8 @@ package com.lubricante.rukanas.model.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "productos")
 public class Producto {
@@ -20,6 +22,9 @@ public class Producto {
     private int descuento;
 
     private String imagen;
+
+    @OneToMany(mappedBy = "producto")
+    private List<Detalles> detalles;
 
     @ManyToOne
     @JoinColumn(name="categoria_id")
@@ -87,5 +92,13 @@ public class Producto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public List<Detalles> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<Detalles> detalles) {
+        this.detalles = detalles;
     }
 }

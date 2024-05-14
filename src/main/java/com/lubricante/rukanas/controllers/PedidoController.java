@@ -1,10 +1,12 @@
 package com.lubricante.rukanas.controllers;
 
 import com.lubricante.rukanas.model.dto.PedidoDto;
-import com.lubricante.rukanas.model.dto.ProductoDto;
 import com.lubricante.rukanas.model.entities.Pedido;
+import com.lubricante.rukanas.model.entities.Usuario;
 import com.lubricante.rukanas.model.request.PedidoRequest;
+import com.lubricante.rukanas.repositories.UsuarioRepository;
 import com.lubricante.rukanas.services.PedidoService;
+import com.lubricante.rukanas.services.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,11 +26,37 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     @GetMapping
    public List<PedidoDto> obtenerPedidos(){
         return pedidoService.findAllPedidos();
     }
 
+    @GetMapping("/lista_usuario/{id}")
+    public List<PedidoDto> obtenerPedidosByUsuario(@PathVariable Long id){
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        Usuario user = null;
+        if(usuario.isPresent()){
+            user = usuario.orElseThrow();
+        }
+
+        return pedidoService.findAllPedidoByUsuario(user);
+    }
+
+    @GetMapping("/estado/{nombre}")
+    public List<PedidoDto> obtenerPedidosByUsuarioAndEstado(@PathVariable String nombre){
+        Optional<Usuario> usuario = usuarioRepository.findByNombre(nombre);
+        Usuario user = null;
+        if(usuario.isPresent()){
+            user = usuario.orElseThrow();
+        }
+        return pedidoService.findAllPedidoByUsuarioAndEstado(user,user.getId());
+    }
     @GetMapping("/{id}")
     public ResponseEntity<?> getPedidoById(@PathVariable Long id) {
         Optional<PedidoDto> pedidoDtoOptional = pedidoService.findByPedido(id);
@@ -39,7 +67,7 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createPedido(@Valid @RequestBody Pedido pedido,
+    public ResponseEntity<?> createPedido(@Valid @RequestBody PedidoDto pedido,
                                           BindingResult result
     ) {
         if (result.hasErrors()) {
