@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(originPatterns = "*")
 @RequestMapping("/detalle")
 public class DetalleController {
 

@@ -19,7 +19,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/productos")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(originPatterns = "*")
 public class ProductoController {
 
     @Autowired
