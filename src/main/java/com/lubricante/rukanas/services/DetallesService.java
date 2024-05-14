@@ -25,6 +25,4 @@ public interface DetallesService {
     void deleteDetalles(Long id);
 
 
-
-
 }

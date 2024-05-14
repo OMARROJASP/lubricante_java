@@ -1,9 +1,5 @@
 package com.lubricante.rukanas.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lubricante.rukanas.model.entities.Pedido;
-import com.lubricante.rukanas.model.entities.Producto;
-
 
 public class DetalleDto {
 

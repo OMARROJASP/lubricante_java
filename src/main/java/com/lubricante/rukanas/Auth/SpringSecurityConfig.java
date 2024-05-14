@@ -47,6 +47,7 @@ public class SpringSecurityConfig {
                 .requestMatchers(HttpMethod.GET,"/pedidos").permitAll()
                 .requestMatchers(HttpMethod.POST,"/pedidos").permitAll()
                 .requestMatchers(HttpMethod.GET,"/productos/**").permitAll() // Permitir acceso sin restricciones a rutas que siguen después de "/categorias"
+                .requestMatchers("/v1/authentificate","/v3/api-docs/**","/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationConfiguration.getAuthenticationManager()))
