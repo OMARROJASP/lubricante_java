@@ -17,8 +17,9 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(originPatterns = "*")
 @RequestMapping("/detalle")
+@CrossOrigin(origins = "https://rukanas.netlify.app")
+
 public class DetalleController {
 
     @Autowired

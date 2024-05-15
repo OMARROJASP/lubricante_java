@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/categorias")
-@CrossOrigin(originPatterns = "*")
+@CrossOrigin(origins = "https://rukanas.netlify.app")
 public class CategoriaController {
 
     @Autowired

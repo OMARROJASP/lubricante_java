@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin(originPatterns = "*")
+@CrossOrigin(origins = "https://rukanas.netlify.app")
 public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;

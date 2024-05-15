@@ -19,7 +19,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/productos")
-@CrossOrigin(originPatterns = "*")
+@CrossOrigin(origins = "https://rukanas.netlify.app")
 public class ProductoController {
 
     @Autowired
